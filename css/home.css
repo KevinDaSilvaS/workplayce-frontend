@@ -1,0 +1,40 @@
+.companies {
+    background-image: linear-gradient(to right, #6a1b9a, #ac46e9) !important;
+}
+
+.users {
+    background-image: linear-gradient(to right, #581183, #d433ef) !important;
+}
+
+.section-left-space {
+    padding-left: 5% !important;
+}
+
+.buttons-home-height {
+    height: 100%;
+}
+
+.footer {
+    position: absolute;
+    width: 100%;
+}
+
+@media only screen and (min-width: 1500px) {
+    .footer {
+        position: absolute;
+        bottom: 0%;
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .buttons-home-margin {
+        margin-top: 5%;
+    }
+
+    .logo-workplayce {
+        margin-left: 30%;
+        width: 400px;
+        margin-top: -30px;
+    }
+}
