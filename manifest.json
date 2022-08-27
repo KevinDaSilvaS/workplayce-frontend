@@ -1,0 +1,43 @@
+{
+    "name": "Workplayce",
+    "short_name": "Workplayce",
+    "start_url": "index.html",
+    "display": "standalone",
+    "background_color": "#6a1b9a",
+    "theme_color": "#8e24aa",
+    "orientation": "portrait-primary",
+    "icons": [
+      {
+        "src": "/img/logo.png",
+        "type": "image/png", "sizes": "72x72"
+      },
+      {
+        "src": "/img/logo.png",
+        "type": "image/png", "sizes": "96x96"
+      },
+      {
+        "src": "/img/logo.png",
+        "type": "image/png","sizes": "128x128"
+      },
+      {
+        "src": "/img/logo.png",
+        "type": "image/png", "sizes": "144x144"
+      },
+      {
+        "src": "/img/logo.png",
+        "type": "image/png", "sizes": "152x152"
+      },
+      {
+        "src": "/img/logo.png",
+        "type": "image/png", "sizes": "192x192"
+      },
+      {
+        "src": "/img/logo.png",
+        "type": "image/png", "sizes": "384x384"
+      },
+      {
+        "src": "/img/logo.png",
+        "type": "image/png", "sizes": "512x512"
+      }
+    ]
+  }
