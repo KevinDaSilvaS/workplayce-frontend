@@ -2,8 +2,8 @@
     "theme_color": "#8e24aa",
     "background_color": "#6a1b9a",
     "display": "standalone",
-    "scope": "https://kevindasilvas.github.io/index.html",
-    "start_url": "/index.html",
+    "scope": "https://kevindasilvas.github.io/",
+    "start_url": "/workplayce-frontend/index.html",
     "name": "Workplayce",
     "short_name": "Workplayce",
     "icons": [
