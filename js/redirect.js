@@ -9,7 +9,8 @@ const redirect = (url = "") => {
     }
 
     const userType = getProperty('user_type');
-    if (userType) {
+    const tokenId = getProperty('token_id');
+    if (userType && tokenId) {
         window.location.href = loggedUrls[userType];
     }
 }

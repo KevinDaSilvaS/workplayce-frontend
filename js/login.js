@@ -1,4 +1,4 @@
-let formType = new URLSearchParams(window.location.search).get("form");
+const formType = new URLSearchParams(window.location.search).get("form");
 
 const urls = {
     login_company: `${backend_host}/companies/auth/login`,
@@ -61,14 +61,15 @@ const submitLoginForm = () => {
         {}, 
         "POST", 
         authResult => {
-            if (authResult["error"])
+            if (authResult["error"]) {
                 return error(authResult.error);
-
+            }
+            
             const expiration = new Date();
             expiration.setDate(expiration.getDate() + 3);
             localStorage.setItem("token_id", authResult.token_id);
             document.cookie = `token_id=${token_id}; expires=${expiration}`;
-            success();
+            return success();
         });
 };
 
