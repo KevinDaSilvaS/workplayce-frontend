@@ -1,10 +1,10 @@
 const formType = new URLSearchParams(window.location.search).get("form");
 
 const urls = {
-    login_company: "http://localhost:4000/api/companies/auth/login",
-    login_user: "http://localhost:4000/api/users/auth/login",
-    signup_company: "http://localhost:4000/api/companies/",
-    signup_user: "http://localhost:4000/api/users/"
+    login_company: `${backend_host}/companies/auth/login`,
+    login_user: `${backend_host}/api/users/auth/login`,
+    signup_company: `${backend_host}/api/companies/`,
+    signup_user: `${backend_host}/api/users/`
 };
 
 const loginForm = `
@@ -52,7 +52,6 @@ const setForm = () => {
 const submitLoginForm = () => {
     const email = document.getElementById("email").value; 
     const password = document.getElementById("password").value;
-    
     request(
         urls[formType], 
         {
@@ -86,7 +85,13 @@ const submitCompanyForm = () => {
         }, 
         {}, 
         "POST", 
-        user => console.log(user));
+        company => {
+            if (company["error"])
+                return error(company.error);
+            localStorage.setItem("user_type", "COMPANY");
+            document.cookie = `user_type=COMPANY;`;
+            submitLoginForm();
+        });
 };
 
 const submitUserForm = () => {
@@ -105,7 +110,13 @@ const submitUserForm = () => {
         }, 
         {}, 
         "POST", 
-        user => console.log(user));
+        user => {
+            if (user["error"])
+                return error(user.error);
+            localStorage.setItem("user_type", "USER");
+            document.cookie = `user_type=USER;`;
+            submitLoginForm();
+        });
 };
 
 setForm();
