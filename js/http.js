@@ -11,7 +11,11 @@ const request = (url, body, headers, method, callback) => {
 
     return fetch(url, {
         method,
-        headers,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            ...headers
+        },
         body: JSON.stringify(body)
     })
     .then(response => response.json())
@@ -20,3 +24,5 @@ const request = (url, body, headers, method, callback) => {
 };
 
 const error = err => document.getElementById("error").innerHTML = err;
+
+const success = () => document.getElementById("error").innerHTML = "";

@@ -1,10 +1,10 @@
-const formType = new URLSearchParams(window.location.search).get("form");
+let formType = new URLSearchParams(window.location.search).get("form");
 
 const urls = {
     login_company: `${backend_host}/companies/auth/login`,
-    login_user: `${backend_host}/api/users/auth/login`,
-    signup_company: `${backend_host}/api/companies/`,
-    signup_user: `${backend_host}/api/users/`
+    login_user: `${backend_host}/users/auth/login`,
+    signup_company: `${backend_host}/companies/`,
+    signup_user: `${backend_host}/users/`
 };
 
 const loginForm = `
@@ -63,10 +63,12 @@ const submitLoginForm = () => {
         authResult => {
             if (authResult["error"])
                 return error(authResult.error);
+
             const expiration = new Date();
             expiration.setDate(expiration.getDate() + 3);
             localStorage.setItem("token_id", authResult.token_id);
             document.cookie = `token_id=${token_id}; expires=${expiration}`;
+            success();
         });
 };
 
@@ -78,8 +80,8 @@ const submitCompanyForm = () => {
     request(
         urls[formType], 
         {
-            companyName,
-            website,
+            company_name: companyName,
+            company_website: website,
             email,
             password
         }, 
@@ -88,9 +90,10 @@ const submitCompanyForm = () => {
         company => {
             if (company["error"])
                 return error(company.error);
+                
             localStorage.setItem("user_type", "COMPANY");
             document.cookie = `user_type=COMPANY;`;
-            submitLoginForm();
+            redirect(window.location.pathname + "?form=login_company");
         });
 };
 
@@ -115,7 +118,7 @@ const submitUserForm = () => {
                 return error(user.error);
             localStorage.setItem("user_type", "USER");
             document.cookie = `user_type=USER;`;
-            submitLoginForm();
+            redirect(window.location.pathname + "?form=login_user");
         });
 };
 
