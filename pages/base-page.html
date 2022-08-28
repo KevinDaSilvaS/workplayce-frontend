@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html class="loading" lang="pt-br" data-textdirection="ltr">
+<!-- BEGIN: Head-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Workplayce é o couchsurf de escritórios.">
+    <meta name="keywords" content="escritório, local de trabalho, gratis, office, escritorio">
+    <title>Workplayce</title>
+    <link rel="apple-touch-icon" href="../img/icons/128x128.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../img/icons/128x128.png">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- BEGIN: Page Level CSS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/template/style.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/base.css">
+    <!-- END: Page Level CSS-->
+</head>
+<!-- END: Head-->
+
+<body class="vertical-layout page-header-light vertical-menu-collapsible vertical-dark-menu preload-transitions 2-columns" data-open="click" data-menu="vertical-dark-menu" data-col="2-columns">
+    <!-- BEGIN: Header-->
+    <header class="page-topbar" id="header">
+        <div class="navbar navbar-fixed">
+            <nav class="navbar-main nav-collapsible sideNav-lock navbar-light purple darken-1">
+                <div class="nav-wrapper">
+                    <!-- <div class="header-search-wrapper hide-on-med-and-down"><i class="material-icons">search</i>
+                        <input class="header-search-input z-depth-2" type="text" name="Search" placeholder="Explore Materialize" data-search="template-list">
+                        <ul class="search-list collection display-none"></ul>
+                    </div> -->
+                    <ul class="navbar-list right">
+                        <li class="hide-on-med-and-down"><a class="waves-effect waves-block waves-light toggle-fullscreen white-text" href="javascript:void(0);"><i class="material-icons">settings_overscan</i></a></li>
+                        <li><a class="waves-effect waves-block waves-light profile-button profile-icon purple lighten-1" href="javascript:void(0);" data-target="profile-dropdown"></a></li>
+                    </ul>
+                    <!-- profile-dropdown-->
+                    <ul class="dropdown-content purple darken-1" id="profile-dropdown">
+                        <li><a class="white-text" href="user-profile-page.html"><i class="material-icons">person_outline</i> Editar Perfil</a></li>
+                        <li><a class="white-text" href="user-login.html"><i class="material-icons">keyboard_tab</i> Sair</a></li>
+                    </ul>
+                </div>
+<!--                 <nav class="display-none search-sm">
+                    <div class="nav-wrapper purple darken-1">
+                        <form>
+                            <div class="input-field search-input-sm">
+                                <input class="search-box-sm mb-0" type="search" required="" id="search" data-search="template-list">
+                                <label class="label-icon" for="search"><i class="material-icons search-sm-icon">search</i></label><i class="material-icons search-sm-close">close</i>
+                                <ul class="search-list collection search-list-sm display-none"></ul>
+                            </div>
+                        </form>
+                    </div>
+                </nav> -->
+            </nav>
+        </div>
+    </header>
+    <!-- END: Header-->
+
+    <!-- BEGIN: SideNav-->
+    <aside class="sidenav-main nav-expanded nav-lock nav-collapsible sidenav-dark sidenav-active-rounded purple darken-4">
+        <div class="brand-sidebar purple darken-4">
+            <h1 class="logo-wrapper"><a class="brand-logo darken-1" href="../index.html"><img class="hide-on-med-and-down " src="../img/icons/128x128.png" alt="Workplayce logo" /><img class="show-on-medium-and-down hide-on-med-and-up" src="../img/icons/128x128.png" alt="Workplayce logo" /><span class="logo-text hide-on-med-and-down">Workplayce</span></a></h1>
+        </div>
+        <ul class="sidenav sidenav-collapsible leftside-navigation collapsible sidenav-fixed menu-shadow purple darken-4" id="slide-out" data-menu="menu-navigation" data-collapsible="accordion">
+            <li class="navigation-header"><a class="navigation-header-text">Menu</a><i class="navigation-header-icon material-icons">more_horiz</i>
+            </li>
+            <li class="bold"><a class="waves-effect waves-cyan " href="app-email.html"><i class="material-icons">mail_outline</i><span class="menu-title">Mail</span></a>
+            </li>
+            <li class="bold"><a class="waves-effect waves-cyan " href="app-chat.html"><i class="material-icons">chat_bubble_outline</i><span class="menu-title">Chat</span></a>
+            </li>
+            <li class="bold"><a class="waves-effect waves-cyan " href="app-todo.html"><i class="material-icons">check</i><span class="menu-title">ToDo</span></a>
+            </li>
+            <li class="bold"><a class="waves-effect waves-cyan " href="app-kanban.html"><i class="material-icons">format_list_bulleted</i><span class="menu-title">Kanban</span></a>
+            </li>
+            <li class="bold"><a class="waves-effect waves-cyan " href="app-file-manager.html"><i class="material-icons">content_paste</i><span class="menu-title">File manager</span></a>
+            </li>
+            <li class="bold"><a class="waves-effect waves-cyan " href="app-contacts.html"><i class="material-icons">import_contacts</i><span class="menu-title">Contacts</span></a>
+            </li>
+            <li class="bold"><a class="waves-effect waves-cyan " href="app-calendar.html"><i class="material-icons">today</i><span class="menu-title">Calendar</span></a>
+            </li>
+            <li class="bold"><a class="waves-effect waves-cyan " href="changelog.html"><i class="material-icons">track_changes</i><span class="menu-title">Changelog</span></a>
+            </li>
+            <li class="bold"><a class="waves-effect waves-cyan " href="https://pixinvent.com/materialize-material-design-admin-template/documentation/index.html" target="_blank"><i class="material-icons">import_contacts</i><span class="menu-title">Documentation</span></a>
+            </li>
+            <li class="bold"><a class="waves-effect waves-cyan " href="https://pixinvent.ticksy.com/" target="_blank"><i class="material-icons">help_outline</i><span class="menu-title">Support</span></a>
+            </li>
+        </ul>
+        <div class="navigation-background"></div><a class="sidenav-trigger btn-sidenav-toggle btn-floating btn-medium waves-effect waves-light hide-on-large-only purple lighten-3" href="#" data-target="slide-out"><i class="material-icons">menu</i></a>
+    </aside>
+    <!-- END: SideNav-->
+
+    <!-- BEGIN: Page Main-->
+    <div id="main">
+        <div class="row">
+            <div class="col s12">
+                <div class="container">
+                    <div class="section">
+                        <ul id="li">
+                        </ul>
+                    </div><!-- START RIGHT SIDEBAR NAV -->
+                    <!-- END RIGHT SIDEBAR NAV -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: Page Main-->
+
+    <!-- BEGIN: Footer-->
+
+    <!-- <footer class="">
+        <div class="footer-copyright">
+            <div class="container"><span>&copy; 2019 <a href="http://themeforest.net/user/pixinvent/portfolio?ref=pixinvent" target="_blank">PIXINVENT</a> All rights reserved.</span><span class="right hide-on-small-only">Design and Developed by <a href="https://pixinvent.com/">PIXINVENT</a></span></div>
+        </div>
+    </footer>
+ -->
+    <script src="../js/footer.js"></script>
+    <!-- END: Footer-->
+    <!-- BEGIN VENDOR JS-->
+    <script src="../js/template/vendors.min.js"></script>
+    <!-- BEGIN VENDOR JS-->
+    <!-- BEGIN THEME  JS-->
+    <script src="../js/template/plugins.min.js"></script>
+    <!-- END THEME  JS-->
+    <!-- BEGIN PAGE LEVEL JS-->
+    <script src="../js/template/base-page.js"></script>
+    <!-- END PAGE LEVEL JS-->
+</body>
+
+</html>
