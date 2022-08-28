@@ -15,7 +15,7 @@ const footer = `
         <div class="footer-copyright">
             <div class="container">
             © 2021 Copyright
-            <a class="grey-text text-lighten-4 right" href="kevin.kds80@gmail.com">Contato</a>
+            <a class="grey-text text-lighten-4 right" href="https://www.linkedin.com/in/kevin-da-silva-28826614b/">Contato</a>
             </div>
         </div>
     </footer>
