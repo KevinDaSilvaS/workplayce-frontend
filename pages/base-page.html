@@ -20,6 +20,7 @@
 <!-- END: Head-->
 
 <body class="vertical-layout page-header-light vertical-menu-collapsible vertical-dark-menu preload-transitions 2-columns" data-open="click" data-menu="vertical-dark-menu" data-col="2-columns">
+    <script src="../js/helpers.js"></script>
     <!-- BEGIN: Header-->
     <header class="page-topbar" id="header">
         <div class="navbar navbar-fixed">
@@ -63,26 +64,29 @@
         <ul class="sidenav sidenav-collapsible leftside-navigation collapsible sidenav-fixed menu-shadow purple darken-4" id="slide-out" data-menu="menu-navigation" data-collapsible="accordion">
             <li class="navigation-header"><a class="navigation-header-text">Menu</a><i class="navigation-header-icon material-icons">more_horiz</i>
             </li>
-            <li class="bold"><a class="waves-effect waves-cyan " href="app-email.html"><i class="material-icons">mail_outline</i><span class="menu-title">Mail</span></a>
-            </li>
-            <li class="bold"><a class="waves-effect waves-cyan " href="app-chat.html"><i class="material-icons">chat_bubble_outline</i><span class="menu-title">Chat</span></a>
-            </li>
-            <li class="bold"><a class="waves-effect waves-cyan " href="app-todo.html"><i class="material-icons">check</i><span class="menu-title">ToDo</span></a>
-            </li>
-            <li class="bold"><a class="waves-effect waves-cyan " href="app-kanban.html"><i class="material-icons">format_list_bulleted</i><span class="menu-title">Kanban</span></a>
-            </li>
-            <li class="bold"><a class="waves-effect waves-cyan " href="app-file-manager.html"><i class="material-icons">content_paste</i><span class="menu-title">File manager</span></a>
-            </li>
-            <li class="bold"><a class="waves-effect waves-cyan " href="app-contacts.html"><i class="material-icons">import_contacts</i><span class="menu-title">Contacts</span></a>
-            </li>
-            <li class="bold"><a class="waves-effect waves-cyan " href="app-calendar.html"><i class="material-icons">today</i><span class="menu-title">Calendar</span></a>
-            </li>
-            <li class="bold"><a class="waves-effect waves-cyan " href="changelog.html"><i class="material-icons">track_changes</i><span class="menu-title">Changelog</span></a>
-            </li>
-            <li class="bold"><a class="waves-effect waves-cyan " href="https://pixinvent.com/materialize-material-design-admin-template/documentation/index.html" target="_blank"><i class="material-icons">import_contacts</i><span class="menu-title">Documentation</span></a>
-            </li>
-            <li class="bold"><a class="waves-effect waves-cyan " href="https://pixinvent.ticksy.com/" target="_blank"><i class="material-icons">help_outline</i><span class="menu-title">Support</span></a>
-            </li>
+            <div id="menu">
+                <li class="bold"><a class="waves-effect waves-cyan " href="app-email.html"><i class="material-icons">mail_outline</i><span class="menu-title">Mail</span></a>
+                </li>
+                <li class="bold"><a class="waves-effect waves-cyan " href="app-chat.html"><i class="material-icons">chat_bubble_outline</i><span class="menu-title">Chat</span></a>
+                </li>
+                <li class="bold"><a class="waves-effect waves-cyan " href="app-todo.html"><i class="material-icons">check</i><span class="menu-title">ToDo</span></a>
+                </li>
+                <li class="bold"><a class="waves-effect waves-cyan " href="app-kanban.html"><i class="material-icons">format_list_bulleted</i><span class="menu-title">Kanban</span></a>
+                </li>
+                <li class="bold"><a class="waves-effect waves-cyan " href="app-file-manager.html"><i class="material-icons">content_paste</i><span class="menu-title">File manager</span></a>
+                </li>
+                <li class="bold"><a class="waves-effect waves-cyan " href="app-contacts.html"><i class="material-icons">import_contacts</i><span class="menu-title">Contacts</span></a>
+                </li>
+                <li class="bold"><a class="waves-effect waves-cyan " href="app-calendar.html"><i class="material-icons">today</i><span class="menu-title">Calendar</span></a>
+                </li>
+                <li class="bold"><a class="waves-effect waves-cyan " href="changelog.html"><i class="material-icons">track_changes</i><span class="menu-title">Changelog</span></a>
+                </li>
+                <li class="bold"><a class="waves-effect waves-cyan " href="https://pixinvent.com/materialize-material-design-admin-template/documentation/index.html" target="_blank"><i class="material-icons">import_contacts</i><span class="menu-title">Documentation</span></a>
+                </li>
+                <li class="bold"><a class="waves-effect waves-cyan " href="https://pixinvent.ticksy.com/" target="_blank"><i class="material-icons">help_outline</i><span class="menu-title">Support</span></a>
+                </li>
+            </div>
+            
         </ul>
         <div class="navigation-background"></div><a class="sidenav-trigger btn-sidenav-toggle btn-floating btn-medium waves-effect waves-light hide-on-large-only purple lighten-3" href="#" data-target="slide-out"><i class="material-icons">menu</i></a>
     </aside>
@@ -103,16 +107,12 @@
         </div>
     </div>
     <!-- END: Page Main-->
-
     <!-- BEGIN: Footer-->
-
-    <!-- <footer class="">
-        <div class="footer-copyright">
-            <div class="container"><span>&copy; 2019 <a href="http://themeforest.net/user/pixinvent/portfolio?ref=pixinvent" target="_blank">PIXINVENT</a> All rights reserved.</span><span class="right hide-on-small-only">Design and Developed by <a href="https://pixinvent.com/">PIXINVENT</a></span></div>
-        </div>
-    </footer>
- -->
     <script src="../js/footer.js"></script>
+    <script src="../js/menu-itens.js"></script>
+    <script>
+        setMenuItens()
+    </script>
     <!-- END: Footer-->
     <!-- BEGIN VENDOR JS-->
     <script src="../js/template/vendors.min.js"></script>
