@@ -8,6 +8,11 @@ const userPages = {
         title: "Escritórios",
         link: "base-page.html?page=places",
         icon: "bookmarks"
+    },
+    sair: {
+        title: "Sair",
+        link: "../index.html?logout=true",
+        icon: "bookmarks"
     }
 };
 
@@ -20,6 +25,11 @@ const companyPages = {
     bookings: {
         title: "Solicitações de Bookings",
         link: "base-page.html?page=bookings",
+        icon: "bookmarks"
+    },
+    sair: {
+        title: "Sair",
+        link: "../index.html?logout=true",
         icon: "bookmarks"
     }
 };
