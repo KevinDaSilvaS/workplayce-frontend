@@ -34,11 +34,15 @@ const setMenuItens = () => {
     const menuPages = pages[user_type];
     const menuItensKeys = Object.keys(menuPages); 
 
-    const menu = menuItensKeys.map(page => {
+    const menuElement = document.getElementById("menu")
+    menuElement.innerHTML = ""
+
+    menuItensKeys.map(page => {
         const {title, link, icon} = menuPages[page];
-        return `<li class="bold" id="${page}"><a class="waves-effect waves-cyan" href="${link}"><i class="material-icons">${icon}</i><span class="menu-title">${title}</span></a>
+        const elem = `<li class="bold" id="${page}"><a class="waves-effect waves-cyan" href="${link}"><i class="material-icons">${icon}</i><span class="menu-title">${title}</span></a>
         </li>`
+
+        menuElement.innerHTML += elem
     })
     
-    document.getElementById("menu").innerHTML = menu
 };
