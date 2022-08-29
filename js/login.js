@@ -66,12 +66,25 @@ const submitLoginForm = () => {
             }
             
             const expiration = new Date();
-            expiration.setDate(expiration.getDate() + 3);
+            expiration.setDate(expiration.getDate() + 3); 
+            setUserType();
             localStorage.setItem("token_id", authResult.token_id);
             document.cookie = `token_id=${token_id}; expires=${expiration}`;
             return success();
         });
 };
+
+const setUserType = () => {
+    if (formType == "login_company" || formType == "signup_company") {
+        localStorage.setItem("user_type", "COMPANY");
+        document.cookie = `user_type=COMPANY;`;
+        return true;
+    }
+
+    localStorage.setItem("user_type", "USER");
+    document.cookie = `user_type=USER;`;
+    return true;
+}
 
 const submitCompanyForm = () => {
     const email = document.getElementById("email").value; 
@@ -92,8 +105,7 @@ const submitCompanyForm = () => {
             if (company["error"])
                 return error(company.error);
                 
-            localStorage.setItem("user_type", "COMPANY");
-            document.cookie = `user_type=COMPANY;`;
+            setUserType();
             redirect(window.location.pathname + "?form=login_company");
         });
 };
@@ -117,8 +129,7 @@ const submitUserForm = () => {
         user => {
             if (user["error"])
                 return error(user.error);
-            localStorage.setItem("user_type", "USER");
-            document.cookie = `user_type=USER;`;
+            setUserType();
             redirect(window.location.pathname + "?form=login_user");
         });
 };
