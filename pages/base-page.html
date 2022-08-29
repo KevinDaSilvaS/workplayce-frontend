@@ -26,10 +26,6 @@
         <div class="navbar navbar-fixed">
             <nav class="navbar-main nav-collapsible sideNav-lock navbar-light purple darken-1">
                 <div class="nav-wrapper">
-                    <!-- <div class="header-search-wrapper hide-on-med-and-down"><i class="material-icons">search</i>
-                        <input class="header-search-input z-depth-2" type="text" name="Search" placeholder="Explore Materialize" data-search="template-list">
-                        <ul class="search-list collection display-none"></ul>
-                    </div> -->
                     <ul class="navbar-list right">
                         <li class="hide-on-med-and-down"><a class="waves-effect waves-block waves-light toggle-fullscreen white-text" href="javascript:void(0);"><i class="material-icons">settings_overscan</i></a></li>
                         <li><a class="waves-effect waves-block waves-light profile-button profile-icon purple lighten-1" href="javascript:void(0);" data-target="profile-dropdown"></a></li>
@@ -98,9 +94,42 @@
             <div class="col s12">
                 <div class="container">
                     <div class="section">
+                        <div class="header-search-wrapper search-box">
+                        <input class="header-search-input z-depth-2 search-input" type="text" name="Search" placeholder="Explore Escritórios" data-search="template-list">
+                        <a href="" class="btn header-search-input z-depth-2 search-input search-btn purple lighten-1">Buscar</a>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col s2 m2 g2">
+                                <p class="options-check purple darken-1 white-text">
+                                    <label>
+                                      <input name="filter" type="radio" checked class="white-text purple"/>
+                                      <span class="white-text">Estado</span>
+                                    </label>
+                                </p>
+                            </div>
+                            <div class="col s2 m2 g2">
+                                <p class="options-check purple darken-1 white-text">
+                                    <label>
+                                      <input name="filter" type="radio" checked class="white-text purple"/>
+                                      <span class="white-text">Endereço</span>
+                                    </label>
+                                </p>
+                            </div>
+                            <div class="col s2 m2 g2">
+                                <p class="options-check purple darken-1 white-text">
+                                    <label>
+                                      <input name="filter" type="radio" checked class="white-text purple"/>
+                                      <span class="white-text">Cidade</span>
+                                    </label>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
                         <ul id="li">
                         </ul>
-                    </div><!-- START RIGHT SIDEBAR NAV -->
+                    <!-- START RIGHT SIDEBAR NAV -->
                     <!-- END RIGHT SIDEBAR NAV -->
                 </div>
             </div>
