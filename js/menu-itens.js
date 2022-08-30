@@ -41,7 +41,7 @@ const pages = {
 
 const setMenuItens = () => {
     const user_type = getProperty("user_type");
-    const menuPages = pages[user_type];
+    const menuPages = pages[user_type] || [];
     const menuItensKeys = Object.keys(menuPages); 
 
     const menuElement = document.getElementById("menu")
