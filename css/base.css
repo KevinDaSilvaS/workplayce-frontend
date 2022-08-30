@@ -32,7 +32,6 @@
 }
 
 .search-btn {
-    padding-top: 5px;
     margin-left: 90% !important;
     height: 48px;
     width: 10% !important;
@@ -66,5 +65,9 @@
         width: 30% !important;
         margin-top: -46px !important;
         margin-bottom: 30px !important;
+    }
+
+    [type="radio"]:not(:checked)+span, [type="radio"]:checked+span {
+        padding-left: 25px;
     }
 }
