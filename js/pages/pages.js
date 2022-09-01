@@ -5,7 +5,7 @@ const setPage = () => {
     };
     
     const pageContentCompany = {
-        bookings: () => "",
+        bookings: createBookingsRequestPage,
         places: () => ""
     };
 
