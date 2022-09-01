@@ -1,6 +1,6 @@
 const radioFilters = ["city", "address", "state"];
 
-const searchPlaces = () => {
+const searchPlaces = (page=1, limit=10) => {
     const selectedFilter = document.querySelector('input[name="filter"]:checked');
 
     if (selectedFilter && radioFilters.includes(selectedFilter.value)) {
@@ -38,8 +38,8 @@ const listPlaces = places => {
     placesContainer.innerHTML += card
 }
 
-const addMoreBtn = () => {
-    document.getElementById("see-more").innerHTML = `<button class="purple btn" onclick="listPlaces();">Ver Mais</button>`;
+const addMoreBtn = (page=1, limit=10) => {
+    document.getElementById("see-more").innerHTML = `<button class="purple btn" onclick="searchPlaces(${page}, ${limit});">Ver Mais</button>`;
 }
 
 const createPlacesPage = () => {
