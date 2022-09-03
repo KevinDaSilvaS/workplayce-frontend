@@ -1,5 +1,4 @@
 const createBookingsRequestPage = () => {
-    console.log("bookings")
     const page = `<div class="container" id="booking-requests"></div>
                     <div id="see-more" class="center"></div>`;
 
