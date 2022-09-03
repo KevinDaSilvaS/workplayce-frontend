@@ -1,13 +1,15 @@
 const setPage = () => {
     const pageContentUser = {
         bookings: createBookingsUserView,
-        places: createPlacesPage
+        places: createPlacesPage,
+        book: () => ""
     };
     
     const pageContentCompany = {
         bookings: createBookingsRequestPage,
         places: createViewPlacesPage,
-        edit_company: () => ""
+        edit_company: () => "",
+        add_booking: () => ""
     };
 
     const page = new URLSearchParams(window.location.search).get("page");
