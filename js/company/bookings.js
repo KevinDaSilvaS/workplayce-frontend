@@ -3,8 +3,16 @@ const createBookingsRequestPage = () => {
                     <div id="see-more" class="center"></div>`;
 
     document.getElementById("page-content").innerHTML = page;
-    loadBookingsRequests();
+    compViewFunc();
 }
+
+const compViewFunc = (limit=1, page=10) => {
+    const bookings = loadBookingsRequests(limit, page);
+    proccessBookingCompanyView(bookings);
+    loadMoreBookingRequestsBtn(limit, page);
+}
+
+const proccessBookingCompanyView = bookings => bookings.map(booking => createBookingCard(booking));
 
 const loadBookingsRequests = (limit=1, page=10) => {
     const searchUrl = `${backend_host}/bookings/filters`;
@@ -12,15 +20,20 @@ const loadBookingsRequests = (limit=1, page=10) => {
     
     const bookings = [{}];
 
-    bookings.map(booking => createBookingCard(booking));
-    loadMoreBookingRequestsBtn();
+    return bookings;
 }
 
 const loadMoreBookingRequestsBtn = (page=1, limit=10) => {
-    document.getElementById("see-more").innerHTML = `<button class="purple btn" onclick="loadBookingsRequests(${page}, ${limit});">Ver Mais</button>`;
+    document.getElementById("see-more").innerHTML = `<button class="purple btn" onclick="compViewFunc(${page}, ${limit});">Ver Mais</button>`;
 }
 
 const createBookingCard = booking => {
+    const options = {
+        true: `<h5 class="white-text">Aprovado</h5>`,
+        false: `<h5 class="white-text">Booking não aprovado</h5>`,
+        undefined: `<a href="" class="btn purple">Aprovar</a>
+                    <a href="" class="btn purple">Recusar</a>`
+    }
     const card = `<div class="card purple darken-3">
                 <div class="card-content white-text center">
                     <p>Agendamento no escritório nome escritorio no dia dia de mes</p>
@@ -47,22 +60,11 @@ const createBookingCard = booking => {
                         </ul>
                     </div>
                     <div id="status" class="center">
-                        ${setStatus(booking)}
+                        ${setStatus(booking, options)}
                     </div>
                 </div>
             </div>`;
     document.getElementById("booking-requests").innerHTML += card;
 }
 
-const setStatus = booking => {
-    if (booking["booking_status"] == true) {
-        return `<h5 class="white-text">Aprovado</h5>`;
-    }
-
-    if (booking["booking_status"] == false) {
-        return `<h5 class="white-text">Booking não aprovado</h5>`;
-    }
-
-    return `<a href="" class="btn purple">Aprovar</a>
-            <a href="" class="btn purple">Recusar</a>`;
-}
+const setStatus = (booking, options) => options[booking["booking_status"]]

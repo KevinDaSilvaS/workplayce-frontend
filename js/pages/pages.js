@@ -1,6 +1,6 @@
 const setPage = () => {
     const pageContentUser = {
-        bookings: () => "",
+        bookings: createBookingsUserView,
         places: createPlacesPage
     };
     
