@@ -6,7 +6,8 @@ const setPage = () => {
     
     const pageContentCompany = {
         bookings: createBookingsRequestPage,
-        places: () => ""
+        places: createViewPlacesPage,
+        edit_company: () => ""
     };
 
     const page = new URLSearchParams(window.location.search).get("page");
