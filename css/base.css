@@ -58,6 +58,28 @@
     background-color: hsla(0, 0%, 0%, 0) !important;
 }
 
+.day {
+    text-align: center;
+    margin: 1% !important;
+    margin-left: 3.5% !important;
+    margin-right: 2% !important;
+}
+
+.day-num {
+    width: 10% !important;
+    text-align: center;
+    margin-left: 2% !important;
+    margin-right: 2% !important;
+    padding-top: 0.2% !important;
+    padding-bottom: 0.2% !important;
+    cursor: pointer;
+}
+
+.available {
+    background-color: #21a305;
+    border-radius: 5px;
+}
+
 @media only screen and (max-width: 800px) {
     .search-input {
         width: 60% !important;
@@ -73,5 +95,9 @@
 
     [type="radio"]:not(:checked)+span, [type="radio"]:checked+span {
         padding-left: 25px;
+    }
+
+    .day {
+        margin-left: 3% !important;
     }
 }
