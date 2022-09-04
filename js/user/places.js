@@ -16,7 +16,7 @@ const searchPlaces = (page=1, limit=10) => {
     listPlaces();
     listPlaces();
     listPlaces();
-    addMoreBtn();
+    addMoreBtn(page+1, limit);
     console.log(searchUrl)
 }
 
