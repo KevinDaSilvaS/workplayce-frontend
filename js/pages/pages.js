@@ -2,7 +2,7 @@ const setPage = () => {
     const pageContentUser = {
         bookings: createBookingsUserView,
         places: createPlacesPage,
-        book: () => "",
+        book: createAddBookingsPage,
         edit_profile: () => ""
     };
     
@@ -10,7 +10,7 @@ const setPage = () => {
         bookings: createBookingsRequestPage,
         places: createViewPlacesPage,
         edit_company: () => "",
-        add_booking: createAddBookingsPage,
+        add_booking: () => "",
         edit_profile: () => ""
     };
 
