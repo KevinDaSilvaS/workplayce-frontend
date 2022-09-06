@@ -93,4 +93,5 @@ const createPlacesPage = () => {
     `;
 
     document.getElementById("page-content").innerHTML = page;
+    searchPlaces();
 }
