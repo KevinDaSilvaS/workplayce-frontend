@@ -37,7 +37,7 @@ const addPlaceBtn = (places, maxOffices=1) => {
 };
 
 const loadPlacesCards = place => {
-    const placeCard = `<div class="col s12 m4">
+    const placeCard = `<div class="col s12 m5">
                             <div class="card">
                                 <div class="card-image">
                                 <img src="../img/icons/512x512.PNG" width="50px" height="400px">
