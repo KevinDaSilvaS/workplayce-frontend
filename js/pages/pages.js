@@ -9,8 +9,9 @@ const setPage = () => {
     const pageContentCompany = {
         bookings: createBookingsRequestPage,
         places: createViewPlacesPage,
-        edit_company: () => "",
-        add_booking: () => "",
+        edit_place: () => "",
+        add_place: () => "",
+        add_availability: () => "",
         edit_profile: () => ""
     };
 
