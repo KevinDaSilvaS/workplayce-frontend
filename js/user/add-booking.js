@@ -5,6 +5,21 @@ const createAddBookingsPage = () => {
     createBookingCalendar(availableDays);
 }
 
+const months = {
+    1: "Janeiro",
+    2: "Fevereiro",
+    3: "Março",
+    4: "Abril",
+    5: "Maio",
+    6: "Junho",
+    7: "Julho",
+    8: "Agosto",
+    9: "Setembro",
+    10: "Outubro",
+    11: "Novembro",
+    12: "Dezembro",
+}
+
 const corePage = place_id => {
     const page = `
         <div id="add-bookings-page">
@@ -54,6 +69,7 @@ const corePage = place_id => {
                             </div>
                         </div>
                     </div>
+                    <div id="confirm-box"></div>
                 </div>
             </div>
         </div>`;
@@ -61,6 +77,23 @@ const corePage = place_id => {
 }
 
 const isAvailable = (availableDays, day) => availableDays.includes(day);
+
+const showConfirmationBooking = day => {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth()+1;
+    const confirmBox = `
+    <div class="col s12 m12 g12 z-depth-3">
+        <div class="card purple white-text">
+            <div class="card-content purple white-text">
+                <span class="card-title">Confirmar Booking</span>
+                <p>Solicitar escritório para o dia ${day} de ${months[month]} de ${year}?</p>
+                <button class="btn purple lighten-1" onclick="addBooking(${day})">Sim</button>
+            </div>
+        </div>
+    </div>`;
+    document.getElementById('confirm-box').innerHTML = confirmBox;
+}
 
 const addBooking = day => alert(`booking ${day}`);
 
@@ -89,7 +122,7 @@ const createBookingCalendar = availableDays => {
 
         if (isAvailable(availableDays, i)) {
             element = `
-                <div class="col s1 m1 g1 day-num available" id="${i}" onclick="addBooking(${i})">
+                <div class="col s1 m1 g1 day-num available" id="${i}" onclick="showConfirmationBooking(${i})">
                     <p class="white-text center">${i}</p>
                 </div>`;
         }
