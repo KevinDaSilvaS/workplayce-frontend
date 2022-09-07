@@ -59,7 +59,7 @@ const loadPlacesCards = place => {
                                     Descrição do escritório.
                                 </p>
                                 <br>
-                                <button class="btn tooltipped purple" data-position="bottom" data-tooltip="Editar escritório"><i class="material-icons">edit</i></button>
+                                <a class="btn tooltipped purple" data-position="bottom" href="base-page.html?page=edit_place&place_id=${place._id}" data-tooltip="Editar escritório"><i class="material-icons">edit</i></a>
                                 <a class="btn tooltipped red darken-1 modal-trigger" data-position="bottom" data-tooltip="Deletar escritório" href="#delete-place${place._id}"><i class="material-icons">delete</i></a>
 
                                 <div id="delete-place${place._id}" class="modal">
