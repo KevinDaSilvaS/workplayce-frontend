@@ -1,5 +1,3 @@
-const hasAvailability = checkAvailability("place_id");
-
 const createViewPlacesPage = () => {
     const myPlaces = loadPlacesRequests();
     const page = `<div id="company-places-view" class="container">
@@ -38,7 +36,8 @@ const addPlaceBtn = (places, maxOffices=1) => {
     return "";
 };
 
-const addAvailabilityBtn = () => {
+const addAvailabilityBtn = place_id => {
+    const hasAvailability = checkAvailability("place_id");
     if (!hasAvailability) {
         return `<a class="btn tooltipped green darken-1" href="base-page.html?page=add_availability&place_id=123" data-position="bottom" data-tooltip="Adicionar disponibilidade"><i class="material-icons">event</i></a>`;
     }
@@ -61,8 +60,18 @@ const loadPlacesCards = place => {
                                 </p>
                                 <br>
                                 <button class="btn tooltipped purple" data-position="bottom" data-tooltip="Editar escritório"><i class="material-icons">edit</i></button>
-                                <button class="btn tooltipped red darken-1" data-position="bottom" data-tooltip="Deletar escritório"><i class="material-icons">delete</i></button>
-                                ${addAvailabilityBtn()}
+                                <a class="btn tooltipped red darken-1 modal-trigger" data-position="bottom" data-tooltip="Deletar escritório" href="#delete-place${place._id}"><i class="material-icons">delete</i></a>
+
+                                <div id="delete-place${place._id}" class="modal">
+                                    <div class="modal-content">
+                                        <h4>Tem certeza que deseja excluir esse escritório</h4>
+                                        <p>Essa ação é irreversivel</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button onclick="alert('delete place._id');" class="modal-close waves-effect waves-green btn-flat">Sim, desejo prosseguir</button>
+                                    </div>
+                                </div>
+                                ${addAvailabilityBtn(place._id)}
                                 </div>
                             </div>
                         </div>`;
