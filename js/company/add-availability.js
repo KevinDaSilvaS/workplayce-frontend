@@ -5,7 +5,11 @@ const createAddAvailabilityPage = () => {
 }
 
 const checkAvailability = place_id => {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
     //check if theres an inserted availability
+    return false;
 }
 
 const addAvailability = () => {

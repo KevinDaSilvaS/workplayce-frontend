@@ -1,3 +1,5 @@
+const hasAvailability = checkAvailability("place_id");
+
 const createViewPlacesPage = () => {
     const myPlaces = loadPlacesRequests();
     const page = `<div id="company-places-view" class="container">
@@ -36,6 +38,13 @@ const addPlaceBtn = (places, maxOffices=1) => {
     return "";
 };
 
+const addAvailabilityBtn = () => {
+    if (!hasAvailability) {
+        return `<a class="btn tooltipped green darken-1" href="base-page.html?page=add_availability&place_id=123" data-position="bottom" data-tooltip="Adicionar disponibilidade"><i class="material-icons">event</i></a>`;
+    }
+    return "";
+}
+
 const loadPlacesCards = place => {
     const placeCard = `<div class="col s12 m5">
                             <div class="card">
@@ -53,6 +62,7 @@ const loadPlacesCards = place => {
                                 <br>
                                 <button class="btn tooltipped purple" data-position="bottom" data-tooltip="Editar escritório"><i class="material-icons">edit</i></button>
                                 <button class="btn tooltipped red darken-1" data-position="bottom" data-tooltip="Deletar escritório"><i class="material-icons">delete</i></button>
+                                ${addAvailabilityBtn()}
                                 </div>
                             </div>
                         </div>`;

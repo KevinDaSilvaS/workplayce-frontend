@@ -11,7 +11,7 @@ const setPage = () => {
         places: createViewPlacesPage,
         edit_place: () => "",
         add_place: () => "",
-        add_availability: () => "",
+        add_availability: createAddAvailabilityPage,
         edit_profile: () => ""
     };
 
