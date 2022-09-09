@@ -29,11 +29,18 @@ const createPlacesForm = () => {
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <button onclick="alert('salvo')" class="purple btn white-text">Salvar</button>
+                                <button onclick="savePlace()" class="purple btn white-text">Salvar</button>
                             </div>
+                        </div>
+                        <div class="row" id="error">
+                            
                         </div>
                     </div>
                 </div>`;
 
     document.getElementById("page-content").innerHTML = page;
+}
+
+const savePlace = () => {
+    alert("salvo");
 }
