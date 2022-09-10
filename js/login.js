@@ -1,5 +1,3 @@
-const formType = new URLSearchParams(window.location.search).get("form");
-
 const urls = {
     login_company: `${backend_host}/companies/auth/login`,
     login_user: `${backend_host}/users/auth/login`,
@@ -44,12 +42,14 @@ const forms = {
 };
 
 const setForm = () => {
+    const formType = new URLSearchParams(window.location.search).get("form");
     const [form, title] = forms[formType];
     document.title = title;
     document.getElementById("form").innerHTML = form;
 };
 
 const submitLoginForm = () => {
+    const formType = new URLSearchParams(window.location.search).get("form");
     const email = document.getElementById("email").value; 
     const password = document.getElementById("password").value;
     request(
@@ -62,19 +62,23 @@ const submitLoginForm = () => {
         "POST", 
         authResult => {
             if (authResult["error"]) {
-                return error(authResult.error);
+                return error(authResult["error"]);
             }
             
             const expiration = new Date();
             expiration.setDate(expiration.getDate() + 3); 
             setUserType();
             localStorage.setItem("token_id", authResult.token_id);
-            document.cookie = `token_id=${token_id}; expires=${expiration}`;
-            return success();
+            document.cookie = `token_id=${authResult.token_id}; expires=${expiration}`;
+            
+            const [path] = window.location.pathname.split("sign.html");
+            const page = `${path}base-page.html?page=places`;
+            redirect(page)
         });
 };
 
 const setUserType = () => {
+    const formType = new URLSearchParams(window.location.search).get("form");
     if (formType == "login_company" || formType == "signup_company") {
         localStorage.setItem("user_type", "COMPANY");
         document.cookie = `user_type=COMPANY;`;
@@ -87,6 +91,7 @@ const setUserType = () => {
 }
 
 const submitCompanyForm = () => {
+    const formType = new URLSearchParams(window.location.search).get("form");
     const email = document.getElementById("email").value; 
     const password = document.getElementById("password").value;
     const companyName = document.getElementById("company_name").value; 
@@ -111,6 +116,7 @@ const submitCompanyForm = () => {
 };
 
 const submitUserForm = () => {
+    const formType = new URLSearchParams(window.location.search).get("form");
     const username = document.getElementById("username").value;
     const description = document.getElementById("description").value; 
     const email = document.getElementById("email").value; 
