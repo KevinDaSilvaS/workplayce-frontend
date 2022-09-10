@@ -3,7 +3,7 @@ const setPage = () => {
         bookings: createBookingsUserView,
         places: createPlacesPage,
         book: createAddBookingsPage,
-        edit_profile: () => ""
+        edit_profile: createEditProfilePage
     };
     
     const pageContentCompany = {
@@ -12,7 +12,7 @@ const setPage = () => {
         edit_place: createPlacesForm,
         add_place: createPlacesForm,
         add_availability: createAddAvailabilityPage,
-        edit_profile: () => ""
+        edit_profile: createEditProfilePage
     };
 
     const page = new URLSearchParams(window.location.search).get("page");
