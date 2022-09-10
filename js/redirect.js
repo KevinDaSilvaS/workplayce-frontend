@@ -3,8 +3,8 @@ const loggedUrls = {
     COMPANY: "google.com"
 }
 
-const redirect = (url = "") => {
-    if (url != "") {
+const redirect = url => {
+    if (url) {
         return window.location.href = url;
     }
 
