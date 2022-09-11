@@ -1,41 +1,72 @@
 const radioFilters = ["city", "address", "state"];
 
-const searchPlaces = (page=1, limit=10) => {
+const searchPlaces = (page=1, limit=10, clear=false) => {
     const selectedFilter = document.querySelector('input[name="filter"]:checked');
 
+    let searchUrl = `${backend_host}/places/?page=${page}&limit=${limit}`;
     if (selectedFilter && radioFilters.includes(selectedFilter.value)) {
+        document.getElementById("places-container").innerHTML = "";
         const searchBox = document.getElementById("search").value;
-        const searchUrl = `${backend_host}/places/?${selectedFilter.value}=${searchBox}`;
-        console.log(searchUrl)
-        return
+        searchUrl = `${backend_host}/places/?${selectedFilter.value}=${searchBox}`;
+    }
+
+    if (clear) {
+        document.getElementById("places-container").innerHTML = "";
     }
     
-    const searchUrl = `${backend_host}/places/`;
-    const placesContainer = document.getElementById("places-container");
-    placesContainer.innerText = "";
-    listPlaces();
-    listPlaces();
-    listPlaces();
-    addMoreBtn(page+1, limit);
-    console.log(searchUrl)
+    request(searchUrl, {}, {}, "GET", places => {
+            if (places["error"]) {
+                listPlaces([]);
+                addMoreBtn(page, limit);
+            }
+            listPlaces(places);
+            addMoreBtn(page+1, limit+10);
+            if (places.length <= 0) {
+                addMoreBtn(page, limit);
+            }
+    }); 
 }
 
 const listPlaces = places => {
     const placesContainer = document.getElementById("places-container");
-    const card = `<div class="col s12 m6 g4">
-                <div class="card">
+    if (places.length <= 0) {
+        const noResultsFound = `<div class="col s12 m12 g12">0 escritórios encontrados.</div>`;
+        placesContainer.innerHTML += noResultsFound;
+        return;
+    }
+    
+    places.map(place => {
+        const {_id, address, city, country, description, company_id} = place;
+        const searchUrl = `${backend_host}/companies/${company_id}`;
+        request(searchUrl, {}, {}, "GET", (company) => {
+            localStorage.setItem(`booking${_id}`, JSON.stringify({
+                place_id: _id,
+                company_id: company._id,
+                company_name: company.company_name, 
+                company_website: company.company_website, 
+                place_description: description,
+                company_email: company.email
+            }))
+            document.getElementById(`company${company_id}`).innerText = company.company_name;
+        });
+
+        const card = `<div class="col s12 m6 g4">
+                <div class="card" id="${_id}">
                     <div class="card-content">
-                        <span class="card-title">Card Title</span>
-                        <p>I am a very simple card. I am good at containing small bits of information.
-                            I am convenient because I require little markup to use effectively.</p>
+                        <span class="card-title" id="company${company_id}">oi</span>
+                        <p>
+                        ${description}
+                        ${address}, ${city}, ${country}.
+                        </p>
                     </div>
-                    <div class="card-action purple ">
-                        <a href="" class="white-text">Ver escritório</a>
+                    <div class="card-action purple">
+                        <a onclick="redirect(window.location.pathname + '?page=book&place=${_id}')" class="white-text">Ver escritório</a>
                     </div>
                 </div>
             </div>`;
 
-    placesContainer.innerHTML += card
+        placesContainer.innerHTML += card;
+    });
 }
 
 const addMoreBtn = (page=1, limit=10) => {
@@ -47,7 +78,7 @@ const createPlacesPage = () => {
         <div class="section">
             <div class="header-search-wrapper search-box">
             <input class="header-search-input z-depth-2 search-input" type="text" id="search" name="Search" placeholder="Explore Escritórios" data-search="template-list">
-            <button class="btn header-search-input z-depth-2 search-input search-btn purple lighten-1" onclick="searchPlaces();">Buscar</button>
+            <button class="btn header-search-input z-depth-2 search-input search-btn purple lighten-1" onclick="searchPlaces(1, 10, true);">Buscar</button>
         </div>
         <div class="container">
             <div class="row">

@@ -80,6 +80,10 @@
     border-radius: 5px;
 }
 
+a {
+    cursor: pointer;
+}
+
 @media only screen and (max-width: 800px) {
     .search-input {
         width: 60% !important;
