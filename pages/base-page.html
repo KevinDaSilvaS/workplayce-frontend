@@ -95,6 +95,25 @@
     <script src="../js/menu-itens.js"></script>
     
     <script src="../js/http.js"></script>
+    <script>
+
+        if (!getProperty("user_id")) {
+            const apiUrl = `${backend_host}/auth/`;
+            request(apiUrl, {}, {
+            "Access-Control-Allow-Headers": "*",
+            "auth-token": getProperty("token_id")
+            }, "GET", userData => {
+                if (userData["error"]) {
+                    //logout
+                }
+
+                if (userData["type"] == "COMPANY") {
+                    return localStorage.setItem("user_id", userData["company_id"])
+                }
+                localStorage.setItem("user_id", userData["user_id"]);
+            });
+        }
+    </script>
     <script src="../js/redirect.js"></script>
     <script src="../js/company/bookings.js"></script>
     <script src="../js/company/add-availability.js"></script>
