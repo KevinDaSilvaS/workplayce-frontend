@@ -1,8 +1,20 @@
 const createAddBookingsPage = () => {
-    const searchUrl = `${backend_host}/bookings/`;
-    const availableDays = [1, 5, 25, 30];
-    corePage(123);
-    createBookingCalendar(availableDays);
+    const currentDate = new Date();
+    const month = currentDate.getMonth()+1;
+    const place_id = new URLSearchParams(window.location.search).get("place");
+    const apiUrl = `${backend_host}/places/availability/${month}/${place_id}`;
+    
+    const aboutCompanyAndOfficeCard = JSON.parse(getProperty(`booking${place_id}`));
+    corePage(aboutCompanyAndOfficeCard);
+    request(apiUrl, {}, {}, "GET", availability => {
+        if (availability["error"]) {
+            return createBookingCalendar([]);
+        }
+
+        localStorage.setItem("availability_id", availability["_id"])
+        const availableDays = availability["days_available"];
+        createBookingCalendar(availableDays);
+    });
 }
 
 const months = {
@@ -20,7 +32,7 @@ const months = {
     12: "Dezembro",
 }
 
-const corePage = place_id => {
+const corePage = cardData => {
     const page = `
         <div id="add-bookings-page">
             <div id="calendar" class="row">
@@ -63,9 +75,9 @@ const corePage = place_id => {
                     <div class="col s12 m5 g5 z-depth-3">
                         <div class="card">
                             <div class="card-content">
-                                <span class="card-title">Card Title</span>
-                                <p>I am a very simple card. I am good at containing small bits of information.
-                                    I am convenient because I require little markup to use effectively.</p>
+                                <span class="card-title">${cardData["company_name"]} - ${cardData["company_website"]}</span>
+                                <p>${cardData["place_description"]}.</p>
+                                <p>Email para contato: ${cardData["company_email"]}.</p>
                             </div>
                         </div>
                     </div>
@@ -95,7 +107,29 @@ const showConfirmationBooking = day => {
     document.getElementById('confirm-box').innerHTML = confirmBox;
 }
 
-const addBooking = day => alert(`booking ${day}`);
+const addBooking = day => {
+    const currentDate = new Date();
+    const month = currentDate.getMonth()+1;
+    const apiUrl = `${backend_host}/bookings`;
+    const place_id = new URLSearchParams(window.location.search).get("place");
+    const requestBody = {
+      user_id: getProperty("user_id"),
+      place_id,
+	  availability_id: getProperty("availability_id"),
+      day,
+      month
+    }
+
+    request(apiUrl, requestBody, {
+        "auth-token": getProperty("token_id")
+    }, "POST", booking => {
+        if (booking["error"]) {
+            return alert("Erro ao cadastrar booking, por favor tente novamente");
+        }
+
+       redirect(window.location.pathname + "?page=bookings");
+    });
+};
 
 const createBookingCalendar = availableDays => {
     const currentDate = new Date();
