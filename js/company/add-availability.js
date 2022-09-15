@@ -4,12 +4,16 @@ const createAddAvailabilityPage = () => {
     //createBookingCalendar(availableDays);
 }
 
-const checkAvailability = place_id => {
+const checkAvailability = async place_id => {
     const currentDate = new Date();
-    const year = currentDate.getFullYear();
     const month = currentDate.getMonth();
-    //check if theres an inserted availability
-    return false;
+    const searchUrl = `${backend_host}/places/availability/${month}/${place_id}`;
+    const availability = await request(searchUrl, {}, {}, "GET", availability => availability)
+    if (availability["error"] == 'Availability resource not found') {
+        return false;
+    }
+
+    return true
 }
 
 const addAvailability = () => {
