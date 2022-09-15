@@ -1,6 +1,6 @@
-const request = (url, body, headers, method, callback) => {
+const request = async (url, body, headers, method, callback) => {
     if (method == "GET") {
-        return fetch(url, {
+        return await fetch(url, {
             method,
             headers,
         })
@@ -9,7 +9,7 @@ const request = (url, body, headers, method, callback) => {
         .catch(err => error(err));
     }
 
-    return fetch(url, {
+    return await fetch(url, {
         method,
         headers: {
             'Accept': 'application/json',
