@@ -97,7 +97,7 @@
     <script src="../js/http.js"></script>
     <script>
 
-        if (!getProperty("user_id")) {
+        if (getProperty("user_id") == "undefined") {
             const apiUrl = `${backend_host}/auth/`;
             request(apiUrl, {}, {
             "Access-Control-Allow-Headers": "*",
@@ -105,6 +105,7 @@
             }, "GET", userData => {
                 if (userData["error"]) {
                     //logout
+                    console.log("LOGOUT")
                 }
 
                 if (userData["type"] == "COMPANY") {
