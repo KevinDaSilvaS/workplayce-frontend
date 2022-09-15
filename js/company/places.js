@@ -3,7 +3,7 @@ const createViewPlacesPage = async () => {
     const searchUrl = `${backend_host}/places/list/${user_id}`;
     await request(searchUrl, {}, {}, "GET", async places => {
         if (places["error"]) {
-           //error
+           return
         }
 
         const page = `<div id="company-places-view" class="container">
