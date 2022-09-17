@@ -39,28 +39,39 @@ const formFields = {
     }
 };
 
+let editProfileUserData = {};
+
 const createInputs = {
     text: (id, title, currentValue="") => `
         <input id="${id}" type="text" value="${currentValue}">
         <label for="${id}" class="active">${title}</label>`,
     password: (id, title, currentValue="") => `
-        <input id="${id}" type="password" value="${currentValue}">
+        <input id="${id}" type="password" value="">
         <label for="${id}" class="active">${title}</label>`,
     textarea: (id, title, currentValue="") => `
         <textarea name="${id}" id="${id}" cols="30" rows="20" style="height: 114px; width: 100%;">${currentValue}</textarea>
         <label for="${id}" class="active">${title}</label>`
 }
 
-const getUserData = user_type => {
-    const url = ""
-    return {
-        username: "kevin da silva",
-        password: "123",
-        description: "oi"
+const getEditProfileUrl = (user_type) => {
+    const user_id = getProperty("user_id");
+    if (user_type == "USER") {
+        return `${backend_host}/users/${user_id}`;
     }
+    return `${backend_host}/companies/${user_id}`;
+}
+
+const getUserData = async user_type => {
+    const url = await getEditProfileUrl(user_type);
+    const userData = await request(url, {}, {}, "GET", result => result)
+    if (userData["error"]) {
+        return {};
+    }
+
+    return userData;
 } 
 
-const createEditProfilePage = () => {
+const createEditProfilePage = async () => {
     const user_type = getProperty("user_type");
 
     const inputs = formFields[user_type] || {fields: []};
@@ -72,7 +83,7 @@ const createEditProfilePage = () => {
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <button onclick="saveProfileInfo(${user_type})" class="purple btn white-text">Salvar</button>
+                    <button onclick="saveProfileInfo('${user_type}')" class="purple btn white-text">Salvar</button>
                 </div>
             </div>
             <div class="row" id="error">
@@ -84,8 +95,9 @@ const createEditProfilePage = () => {
 
     const fieldsDiv = document.getElementById("fields");
 
-    inputs.fields.map(({input_type, input_name, input_title}) => {
-        const inputHtml = createInputs[input_type](input_name, input_title, getUserData(user_type)[input_name]);
+    editProfileUserData = await getUserData(user_type);
+    inputs.fields.map(async ({input_type, input_name, input_title}) => {
+        const inputHtml = createInputs[input_type](input_name, input_title, editProfileUserData[input_name]);
         fieldsDiv.innerHTML += `
             <div class="input-field col s12">
             ${inputHtml}
@@ -93,6 +105,31 @@ const createEditProfilePage = () => {
     });
 }
 
-const saveProfileInfo = user_type => {
-    alert('saved');
+const saveProfileInfo = async user_type => {
+    const url = await getEditProfileUrl(user_type);
+    const requestData = formFields[user_type].fields.reduce((acc, input) => {
+        const inputName = input["input_name"];
+        const inputField = document.getElementById(`${inputName}`).value;
+        if (inputField == "" || editProfileUserData[inputName] == inputField) {
+            return acc;
+        }
+        acc[inputName] = inputField;
+        return acc;
+    }, {});
+
+    if (Object.keys(requestData).length <= 0) {
+        return
+    }
+    
+    const updatedProfile = await request(url, requestData, {
+        "auth-token": getProperty("token_id")
+    }, "PATCH", result => result);
+
+    if (updatedProfile["error"]) {
+        alert('error updating profile');
+        return
+    } else {
+        redirect(window.location.href);
+    }
+    
 }
