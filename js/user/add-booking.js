@@ -5,15 +5,16 @@ const createAddBookingsPage = () => {
     const apiUrl = `${backend_host}/places/availability/${month}/${place_id}`;
     
     const aboutCompanyAndOfficeCard = JSON.parse(getProperty(`booking${place_id}`));
+    const companyId = aboutCompanyAndOfficeCard["company_id"];
     corePage(aboutCompanyAndOfficeCard);
     request(apiUrl, {}, {}, "GET", availability => {
         if (availability["error"]) {
-            return createBookingCalendar([]);
+            return createBookingCalendar([], companyId);
         }
 
         localStorage.setItem("availability_id", availability["_id"])
         const availableDays = availability["days_available"];
-        createBookingCalendar(availableDays);
+        createBookingCalendar(availableDays, companyId);
     });
 }
 
@@ -90,7 +91,7 @@ const corePage = cardData => {
 
 const isAvailable = (availableDays, day) => availableDays.includes(day);
 
-const showConfirmationBooking = day => {
+const showConfirmationBooking = (day, companyId) => {
     const currentDate = new Date();
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth()+1;
@@ -100,14 +101,14 @@ const showConfirmationBooking = day => {
             <div class="card-content purple white-text">
                 <span class="card-title">Confirmar Booking</span>
                 <p>Solicitar escritório para o dia ${day} de ${months[month]} de ${year}?</p>
-                <button class="btn purple lighten-1" onclick="addBooking(${day})">Sim</button>
+                <button class="btn purple lighten-1" onclick="addBooking(${day}, '${companyId}')">Sim</button>
             </div>
         </div>
     </div>`;
     document.getElementById('confirm-box').innerHTML = confirmBox;
 }
 
-const addBooking = day => {
+const addBooking = (day, company_id) => {
     const currentDate = new Date();
     const month = currentDate.getMonth()+1;
     const apiUrl = `${backend_host}/bookings`;
@@ -116,14 +117,18 @@ const addBooking = day => {
       user_id: getProperty("user_id"),
       place_id,
 	  availability_id: getProperty("availability_id"),
+      company_id,
       day,
       month
     }
+
+    console.log(requestBody)
 
     request(apiUrl, requestBody, {
         "auth-token": getProperty("token_id")
     }, "POST", booking => {
         if (booking["error"]) {
+            console.log(booking["error"])
             return alert("Erro ao cadastrar booking, por favor tente novamente");
         }
 
@@ -131,7 +136,7 @@ const addBooking = day => {
     });
 };
 
-const createBookingCalendar = availableDays => {
+const createBookingCalendar = (availableDays, companyId) => {
     const currentDate = new Date();
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth();
@@ -156,7 +161,7 @@ const createBookingCalendar = availableDays => {
 
         if (isAvailable(availableDays, i)) {
             element = `
-                <div class="col s1 m1 g1 day-num available" id="${i}" onclick="showConfirmationBooking(${i})">
+                <div class="col s1 m1 g1 day-num available" id="${i}" onclick="showConfirmationBooking(${i}, '${companyId}')">
                     <p class="white-text center">${i}</p>
                 </div>`;
         }
