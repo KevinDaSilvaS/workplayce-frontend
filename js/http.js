@@ -18,7 +18,7 @@ const request = async (url, body, headers, method, callback) => {
         },
         body: JSON.stringify(body)
     })
-    .then(response => response.json())
+    .then(response => response.status == 204? {} : response.json())
     .then(json => callback(json))
     .catch(err => error(err));
 };
