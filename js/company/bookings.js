@@ -7,14 +7,14 @@ const createBookingsRequestPage = () => {
 }
 
 const compViewFunc = (limit=1, page=10) => {
-    const bookings = loadBookingsRequests(limit, page);
+    const bookings = loadBookingsCompanyRequests(limit, page);
     proccessBookingCompanyView(bookings);
     loadMoreBookingRequestsBtn(limit, page);
 }
 
 const proccessBookingCompanyView = bookings => bookings.map(booking => createBookingCard(booking));
 
-const loadBookingsRequests = (limit=1, page=10) => {
+const loadBookingsCompanyRequests = (limit=1, page=10) => {
     const searchUrl = `${backend_host}/bookings/filters`;
     console.log("request bookings", searchUrl);
     
