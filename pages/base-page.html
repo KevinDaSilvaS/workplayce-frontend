@@ -100,7 +100,6 @@
         if (!getProperty("user_id") || getProperty("user_id") == "undefined") {
             const apiUrl = `${backend_host}/auth/`;
             request(apiUrl, {}, {
-            "Access-Control-Allow-Headers": "*",
             "auth-token": getProperty("token_id")
             }, "GET", userData => {
                 if (userData["error"]) {
@@ -108,7 +107,6 @@
                     console.log("LOGOUT")
                 }
 
-                console.log("::::::>", userData)
                 if (userData["type"] == "COMPANY") {
                     return localStorage.setItem("user_id", userData["company_id"])
                 }
