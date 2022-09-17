@@ -122,13 +122,10 @@ const addBooking = (day, company_id) => {
       month
     }
 
-    console.log(requestBody)
-
     request(apiUrl, requestBody, {
         "auth-token": getProperty("token_id")
     }, "POST", booking => {
         if (booking["error"]) {
-            console.log(booking["error"])
             return alert("Erro ao cadastrar booking, por favor tente novamente");
         }
 
