@@ -95,6 +95,7 @@
     <script src="../js/menu-itens.js"></script>
     
     <script src="../js/http.js"></script>
+    <script src="../js/redirect.js"></script>
     <script>
 
         if (!getProperty("user_id") || getProperty("user_id") == "undefined") {
@@ -104,7 +105,7 @@
             }, "GET", userData => {
                 if (userData["error"]) {
                     //logout
-                    console.log("LOGOUT")
+                    redirect('../../index.html?logout=true')
                 }
 
                 if (userData["type"] == "COMPANY") {
@@ -114,7 +115,6 @@
             });
         }
     </script>
-    <script src="../js/redirect.js"></script>
     <script src="../js/company/bookings.js"></script>
     <script src="../js/company/add-availability.js"></script>
     <script src="../js/company/places.js"></script>
