@@ -126,7 +126,7 @@ const saveProfileInfo = async user_type => {
     }, "PATCH", result => result);
 
     if (updatedProfile["error"]) {
-        alert('error updating profile');
+        error(updatedProfile["error"]);
         return
     } else {
         redirect(window.location.href);

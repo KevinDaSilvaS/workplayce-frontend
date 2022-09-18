@@ -126,7 +126,7 @@ const addBooking = (day, company_id) => {
         "auth-token": getProperty("token_id")
     }, "POST", booking => {
         if (booking["error"]) {
-            return alert("Erro ao cadastrar booking, por favor tente novamente");
+            return error(booking["error"]);
         }
 
        redirect(window.location.pathname + "?page=bookings");
