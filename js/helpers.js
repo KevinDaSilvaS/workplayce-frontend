@@ -24,3 +24,9 @@ const getProperty = key => {
     }
     return value;
 }
+
+const logout = () => {
+    localStorage.clear();
+    document.cookie="user_type=;expires=Thu, 01 Jan 1970";
+    document.cookie="token_id=;expires=Thu, 01 Jan 1970";
+}

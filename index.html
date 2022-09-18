@@ -10,8 +10,8 @@
     <title>Workplayce</title>
 </head>
 <body class="purple darken-3">
-    <script src="./js/helpers.js"></script>
     <script src="./js/redirect.js"></script>
+    <script src="./js/helpers.js"></script>
     <script src="./js/header.js"></script>
     
     <div class="purple row z-depth-3 section section-left-space users section-bottom-space">
@@ -64,6 +64,12 @@
 
     <!-- Footer -->
     <script src="./js/footer.js"></script>
+    <script>
+        const logoutSet = new URLSearchParams(window.location.search).get("logout");
+        if(logoutSet) {
+            logout();
+        }
+    </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
