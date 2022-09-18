@@ -1,12 +1,12 @@
 const createAddAvailabilityPage = () => {
-    const searchUrl = `${backend_host}/availability/`;
-    coreAvailabilityPage(123);
+    const place_id = new URLSearchParams(window.location.search).get("place_id");
+    coreAvailabilityPage(place_id);
     //createBookingCalendar(availableDays);
 }
 
 const checkAvailability = async place_id => {
     const currentDate = new Date();
-    const month = currentDate.getMonth();
+    const month = currentDate.getMonth()+1;
     const searchUrl = `${backend_host}/places/availability/${month}/${place_id}`;
     const availability = await request(searchUrl, {}, {}, "GET", availability => availability)
     if (availability["error"] == 'Availability resource not found') {
@@ -16,19 +16,33 @@ const checkAvailability = async place_id => {
     return true
 }
 
-const addAvailability = () => {
-    //get place id
-    const spots = parseInt(document.getElementById('spots').value) || 1;
-    const availabilityDays = Object.values(JSON.parse(getFromLocalStorage("availability-days"))) || [];
+const addAvailability = async place_id => {
+    const currentDate = new Date();
+    const month_number = currentDate.getMonth()+1;
+    const token_id = getProperty("token_id");
+    const url = `${backend_host}/places/availability/`;
+    const available_spots = parseInt(document.getElementById('spots').value) || 1;
+    const days_available = Object.values(JSON.parse(getFromLocalStorage("availability-days"))) || [];
+    const requestData = {
+        place_id,
+        available_spots,
+        days_available,
+        month_number
+    };
     // save availability
-    console.log(availabilityDays)
-    console.log(spots)
+    const availability = await request(url, requestData, { "auth-token": token_id }, "POST", availability => availability)
+    if (availability["error"]) {
+        return error(availability["error"]);
+    }
+
+    localStorage.removeItem("availability-days");
+    return redirect(window.location.pathname + "?page=places");
 }
 
 const coreAvailabilityPage = place_id => {
     const currentDate = new Date();
     const year = currentDate.getFullYear();
-    const month = currentDate.getMonth();
+    const month = currentDate.getMonth()+1;
     const page = `
         <div id="add-bookings-page">
             <div id="calendar" class="row">
@@ -80,7 +94,7 @@ const coreAvailabilityPage = place_id => {
                                 </div>
                                 <p>Confirmar disponibilidade para ${months[month+1]} de ${year}?</p>
                                 <p>Dias selecionados: <div id="days">...</div></p>
-                                <button class="btn purple lighten-1" onclick="addAvailability()">Sim</button>
+                                <button class="btn purple lighten-1" onclick="addAvailability('${place_id}')">Sim</button>
                             </div>
                         </div>
                     </div>

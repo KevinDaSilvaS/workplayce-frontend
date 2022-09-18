@@ -39,7 +39,7 @@ const addPlace = () => redirect(window.location.pathname + '?page=add_place')
 const addAvailabilityBtn = async place_id => {
     const hasAvailability = await checkAvailability(place_id);
     if (!hasAvailability) {
-        return `<a class="btn tooltipped green darken-1" href="base-page.html?page=add_availability&place_id=123" data-position="bottom" data-tooltip="Adicionar disponibilidade"><i class="material-icons">event</i></a>`;
+        return `<a class="btn tooltipped green darken-1" href="base-page.html?page=add_availability&place_id=${place_id}" data-position="bottom" data-tooltip="Adicionar disponibilidade"><i class="material-icons">event</i></a>`;
     }
     return "";
 }
