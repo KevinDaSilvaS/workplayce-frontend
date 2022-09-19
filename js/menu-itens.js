@@ -7,12 +7,12 @@ const userPages = {
     places: {
         title: "Escritórios",
         link: "base-page.html?page=places",
-        icon: "bookmarks"
+        icon: "business"
     },
     sair: {
         title: "Sair",
         link: "../index.html?logout=true",
-        icon: "bookmarks"
+        icon: "directions_run"
     }
 };
 
@@ -20,7 +20,7 @@ const companyPages = {
     places: {
         title: "Meus Escritórios",
         link: "base-page.html?page=places",
-        icon: "bookmarks"
+        icon: "business"
     },
     bookings: {
         title: "Solicitações de Bookings",
@@ -30,7 +30,7 @@ const companyPages = {
     sair: {
         title: "Sair",
         link: "../index.html?logout=true",
-        icon: "bookmarks"
+        icon: "directions_run"
     }
 };
 
