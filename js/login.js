@@ -1,8 +1,8 @@
 const urls = {
-    login_company: `${backend_host_login}/companies/auth/login`,
-    login_user: `${backend_host_login}/users/auth/login`,
-    signup_company: `${backend_host_login}/companies/`,
-    signup_user: `${backend_host_login}/users/`
+    login_company: `${backend_host}/companies/auth/login`,
+    login_user: `${backend_host}/users/auth/login`,
+    signup_company: `${backend_host}/companies/`,
+    signup_user: `${backend_host}/users/`
 };
 
 const loginForm = `
