@@ -73,7 +73,8 @@ const submitLoginForm = () => {
             
             const [path] = window.location.pathname.split("sign.html");
             const page = `${path}base-page.html?page=places`;
-            redirect(page)
+            console.log(page)
+            //redirect(page)
         });
 };
 
