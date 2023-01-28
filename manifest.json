@@ -1,0 +1,9 @@
+{
+    "name": "workplayce",
+    "short_name": "workplayce",
+    "start_url": "",
+    "icons": [],
+    "theme-color": "#ac46e9",
+    "display": "fullscreen",
+    "orientation": "portrait"
+}

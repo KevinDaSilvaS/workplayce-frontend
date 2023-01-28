@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="shortcut icon" type="image/x-icon" href="./img/icons/128x128.png">
     <link rel="stylesheet" href="./css/home.css">
+    <link rel="manifest" href="./manifest.json">
     <title>Workplayce</title>
 </head>
 <body class="purple darken-3">
@@ -61,7 +62,11 @@
             </div>
         </div>
     </div>
-
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+        }
+    </script>
     <!-- Footer -->
     <script src="./js/footer.js"></script>
     <script>
